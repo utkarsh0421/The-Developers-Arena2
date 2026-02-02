@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: erp-api-staging
+  labels:
+    app: erp-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: erp-api
+  template:
+    metadata:
+      labels:
+        app: erp-api
+    spec:
+      containers:
+        - name: erp-api
+          image: your-registry/erp-api:staging
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: erp-api-config
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 30
+
