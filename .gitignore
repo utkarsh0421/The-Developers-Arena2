@@ -1,0 +1,28 @@
+# Build outputs
+**/target/
+**/build/
+**/out/
+**/.gradle/
+**/bin/
+**/classes/
+
+# Node / frontend dependencies
+**/node_modules/
+**/dist/
+**/coverage/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
